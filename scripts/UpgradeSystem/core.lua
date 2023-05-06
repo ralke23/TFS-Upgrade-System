@@ -1,5 +1,5 @@
-local UPGRADE_SYSTEM_VERSION = "3.0.3"
-print(">> Loaded Upgrade System v" .. UPGRADE_SYSTEM_VERSION)
+local UPGRADE_SYSTEM_VERSION = "1.0.0"
+print(">> Loading upgrade system v" .. UPGRADE_SYSTEM_VERSION)
 
 US_CONDITIONS = {}
 US_BUFFS = {}
@@ -772,12 +772,12 @@ LookEvent.onLook = function(player, thing, position, distance, description)
                 description = description:gsub(thing:getName(), "%1 +" .. upgrade)
             end
             if description:find("(%)%.?)") then
-                description = description:gsub("(%)%.?)", "%1\nItem Level: " .. itemLevel)
+                description = description:gsub("(%)%.?)", "%1\nStrenght: " .. itemLevel)
             else
                 if upgrade > 0 then
-                    description = description:gsub("+" .. upgrade .. "%.", "%1\nItem Level: " .. itemLevel)
+                    description = description:gsub("+" .. upgrade .. "%.", "%1\nStrenght: " .. itemLevel)
                 else
-                    description = description:gsub(thing:getName(), "%1\nItem Level: " .. itemLevel)
+                    description = description:gsub(thing:getName(), "%1\nStrenght: " .. itemLevel)
                 end
             end
             if thing:isUnidentified() then
@@ -786,18 +786,18 @@ LookEvent.onLook = function(player, thing, position, distance, description)
                     description = description:gsub("You see (" .. thing:getArticle() .. "%S?)", "You see an")
                 end
             else
-                description = description:gsub(thing:getName(), thing:getRarity().name .. " %1")
-                if thing:getArticle():len() > 0 and thing:getRarity().name == "epic" and thing:getArticle() ~= "an" then
-                    description = description:gsub("You see (" .. thing:getArticle() .. "%S?)", "You see an")
+                description = description:gsub(thing:getName(), thing:getRarity().name .. "%1")
+                if thing:getArticle():len() > 0 and thing:getRarity().name == "legendary" and thing:getArticle() ~= "a" then
+                    description = description:gsub("You see (" .. thing:getArticle() .. "%S?)", "You see a")
                 end
                 if thing:isUnique() then
-                    description = description:gsub("Item Level: " .. itemLevel, thing:getUniqueName() .. "\n%1")
+                    description = description:gsub("Strenght: " .. itemLevel, thing:getUniqueName() .. "\n%1")
                 end
                 for i = thing:getMaxAttributes(), 1, -1 do
                     local enchant = thing:getBonusAttribute(i)
                     if enchant then
                         local attr = US_ENCHANTMENTS[enchant[1]]
-                        description = description:gsub("Item Level: " .. itemLevel, "%1\n" .. attr.format(enchant[2]))
+                        description = description:gsub("Strenght: " .. itemLevel, "%1\n" .. attr.format(enchant[2]))
                     end
                 end
             end
@@ -841,7 +841,7 @@ LookEvent.onLook = function(player, thing, position, distance, description)
         elseif thing:getType():canHaveItemLevel() then
             local itemLevel = thing:getItemLevel()
             if description:find("(%)%.?)") then
-                description = description:gsub("(%)%.?)", "%1\nItem Level: " .. itemLevel)
+                description = description:gsub("(%)%.?)", "%1\nStrenght: " .. itemLevel)
             end
         end
     elseif thing:isPlayer() then
@@ -852,7 +852,7 @@ LookEvent.onLook = function(player, thing, position, distance, description)
                 iLvl = iLvl + item:getItemLevel()
             end
         end
-        description = description .. "\nTotal Item LeveL: " .. iLvl
+      --  description = description .. "\[Equipment Lvl: " .. iLvl .. "]"
     end
     return description
 end
@@ -1316,7 +1316,7 @@ function ItemType.isUpgradable(self)
 end
 
 function ItemType.canHaveItemLevel(self)
-    if self:getTransformEquipId() > 0 or self:getDecayId() > 0 or self:getDestroyId() > 0 or self:getCharges() > 0 then
+    if self:isStackable() or self:getTransformEquipId() > 0 or self:getDecayId() > 0 or self:getDestroyId() > 0 or self:getCharges() > 0 then
         return false
     end
     local slot = self:getSlotPosition() - SLOTP_LEFT - SLOTP_RIGHT
@@ -1361,7 +1361,7 @@ function Player.getNextSubId(self, itemSlot, attrSlot)
     end
 
     subId[itemSlot][attrSlot] = subId.current
-
+	---print(itemSlot, attrSlot, subId.current)
     return subId.current
 end
 

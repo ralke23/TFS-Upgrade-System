@@ -147,7 +147,10 @@ function CrystalsAction.onUse(player, item, fromPosition, target, toPosition, is
             if itemType then
                 local weaponType = itemType:getWeaponType()
                 if target:identify(player, itemType, weaponType) then
-                    item:remove(1)
+                    --item:remove(1)
+					player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_YELLOW)
+					player:getPosition():sendMagicEffect(CONST_ME_CRAPS)
+					player:getPosition():sendMagicEffect(CONST_ME_STUN)
                 else
                     player:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
                 end

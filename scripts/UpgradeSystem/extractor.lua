@@ -5,7 +5,7 @@ function CrystalExtractor.onUse(player, item, fromPosition, target, toPosition, 
         local amount = target:getCount()
         for i = 1, amount do
             if math.random(US_CONFIG.CRYSTAL_BREAK_CHANCE) == 1 then
-                player:sendTextMessage(MESSAGE_STATUS_WARNING, "Crystal inside broke!")
+                player:sendTextMessage(MESSAGE_STATUS_WARNING, "Rune inside broke!")
             else
                 local rand = math.random(100)
                 local crystals = 1
