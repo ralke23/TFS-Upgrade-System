@@ -278,7 +278,7 @@ US_ENCHANTMENTS = {
     combatType = US_TYPES.CONDITION,
     condition = CONDITION_ATTRIBUTES,
     param = CONDITION_PARAM_SKILL_FISHING,
-    VALUES_PER_LEVEL = 0.1,
+    VALUES_PER_LEVEL = 1,
     format = function(value)
       return "Fishing +" .. value
     end,
