@@ -867,7 +867,7 @@ function Item.rollAttribute(self, player, itemType, weaponType, unidentify)
     if unidentify then
         if US_CONFIG.IDENTIFY_UPGRADE_LEVEL then
             local upgrade_level = 1
-            for i = US_CONFIG.MAX_UPGRADE_LEVEL, 1, -1 do
+            for i = US_CONFIG.MAX_IDENTIFY_LEVEL, 1, -1 do
                 if i >= US_CONFIG.UPGRADE_LEVEL_DESTROY then
                     if math.random(100) <= US_CONFIG.UPGRADE_DESTROY_CHANCE[i] then
                         upgrade_level = i

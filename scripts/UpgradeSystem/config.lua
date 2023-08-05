@@ -29,13 +29,14 @@ US_CONFIG = {
   CRYSTAL_EXTRACTOR = 2557, -- Crystal Extractor item id
   CRYSTAL_FOSSIL = 2267, -- Crystal Fossil item id
   --
-  IDENTIFY_UPGRADE_LEVEL = false, -- if true, roll random upgrade level when identifing an item
+  IDENTIFY_UPGRADE_LEVEL = true, -- if true, roll random upgrade level when identifing an item
   UPGRADE_SUCCESS_CHANCE = {[1] = 100, [2] = 100, [3] = 95, [4] = 80, [5] = 65, [6] = 40, [7] = 30, [8] = 15, [9] = 5}, -- % chance for the upgrade at given upgrade level, -1 upgrade level on failure
   UPGRADE_LEVEL_DESTROY = 10, -- at which upgrade level should it break if failed, for example if = 7 then upgrading from +6 to +7-9 can destroy item on failure.
   UPGRADE_DESTROY_CHANCE = {[10] = 1}, -- chance for the item to break at given upgrade level
   --
   MAX_ITEM_LEVEL = 300, -- max that Item Level can be assigned to item
   MAX_UPGRADE_LEVEL = 9, -- max level that item can be upgraded to,
+  MAX_IDENTIFY_LEVEL = 3, -- max level that item can be identified
   --
   ATTACK_PER_ITEM_LEVEL = 100, -- every X Item Level +ATTACK_FROM_ITEM_LEVEL attack
   ATTACK_FROM_ITEM_LEVEL = 1, -- +X bonus attack for every ATTACK_PER_ITEM_LEVEL
@@ -283,6 +284,26 @@ US_ENCHANTMENTS = {
       return "Fishing +" .. value
     end,
     itemType = US_ITEM_TYPES.BOOTS + US_ITEM_TYPES.SHIELD
+  },
+  [14] = {
+    name = "Mana Steal",
+    combatType = US_TYPES.OFFENSIVE,
+    VALUES_PER_LEVEL = 0.02,
+    format = function(value)
+      return "Mana Leech " .. value .. "%% of dealt damage"
+    end,
+    itemType = US_ITEM_TYPES.WEAPON_DISTANCE + US_ITEM_TYPES.WEAPON_WAND,
+    chance = 20
+  },
+  [15] = {
+    name = "Life Steal",
+    combatType = US_TYPES.OFFENSIVE,
+    VALUES_PER_LEVEL = 0.02,
+    format = function(value)
+      return "Life Leech " .. value .. "%% of dealt damage"
+    end,
+    itemType = US_ITEM_TYPES.WEAPON_DISTANCE + US_ITEM_TYPES.WEAPON_MELEE,
+    chance = 20
   }
 }
 
