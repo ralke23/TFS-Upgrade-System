@@ -179,98 +179,98 @@ US_ENCHANTMENTS = {
   },
 
   [7] = {
-    name = "Flame Strike on Hit",
+    name = "Flame Strike on Attack",
     combatType = US_TYPES.TRIGGER,
-    triggerType = US_TRIGGERS.HIT,
-    VALUES_PER_LEVEL = 1,
+    triggerType = US_TRIGGERS.ATTACK,
+    VALUES_PER_LEVEL = 2.5,
     execute = function(attacker, target, damage)
-      if math.random(100) < 25 then
+      if math.random(100) < 100 then
         attacker:getPosition():sendDistanceEffect(target:getPosition(), CONST_ANI_FIRE)
         doTargetCombatHealth(attacker:getId(), target, COMBAT_FIREDAMAGE, 1, damage, CONST_ME_FIREATTACK, ORIGIN_CONDITION)
       end
     end,
     format = function(value)
-      return "25%% chance to reflect or cast Flame Hit dealing 1-" .. value .. " damage on combat"
+      return "20%% to cast Flame Strike on Attack dealing 1-" .. value .. " damage"
     end,
     itemType = US_ITEM_TYPES.RING + US_ITEM_TYPES.NECKLACE + US_ITEM_TYPES.WEAPON_MELEE + US_ITEM_TYPES.WEAPON_WAND
   },
   [8] = {
-    name = "Ice Strike on Hit",
+    name = "Ice Strike on Attack",
     combatType = US_TYPES.TRIGGER,
-    triggerType = US_TRIGGERS.HIT,
-    VALUES_PER_LEVEL = 1,
+    triggerType = US_TRIGGERS.ATTACK,
+    VALUES_PER_LEVEL = 2.5,
     execute = function(attacker, target, damage)
-      if math.random(100) < 25 then
+      if math.random(100) < 100 then
         attacker:getPosition():sendDistanceEffect(target:getPosition(), CONST_ANI_SMALLICE)
         doTargetCombatHealth(attacker:getId(), target, COMBAT_ICEDAMAGE, 1, damage, CONST_ME_ICEATTACK, ORIGIN_CONDITION)
       end
     end,
     format = function(value)
-      return "25%% chance to reflect or cast Ice Hit dealing 1-" .. value .. " damage on combat"
+      return "20%% to cast Ice Strike on Attack dealing 1-" .. value .. " damage"
     end,
     itemType = US_ITEM_TYPES.RING + US_ITEM_TYPES.NECKLACE + US_ITEM_TYPES.WEAPON_WAND
   },
   [9] = {
-    name = "Terra Strike on Hit",
+    name = "Terra Strike on Attack",
     combatType = US_TYPES.TRIGGER,
-    triggerType = US_TRIGGERS.HIT,
-    VALUES_PER_LEVEL = 1,
+    triggerType = US_TRIGGERS.ATTACK,
+    VALUES_PER_LEVEL = 2.5,
     execute = function(attacker, target, damage)
-      if math.random(100) < 25 then
+      if math.random(100) < 100 then
         attacker:getPosition():sendDistanceEffect(target:getPosition(), CONST_ANI_SMALLEARTH)
         doTargetCombatHealth(attacker:getId(), target, COMBAT_EARTHDAMAGE, 1, damage, CONST_ME_CARNIPHILA, ORIGIN_CONDITION)
       end
     end,
     format = function(value)
-      return "25%% chance to reflect or cast Terra Hit dealing 1-" .. value .. " damage on combat"
+      return "20%% to cast Terra Strike on Attack dealing 1-" .. value .. " damage"
     end,
     itemType = US_ITEM_TYPES.RING + US_ITEM_TYPES.NECKLACE + US_ITEM_TYPES.WEAPON_WAND
   },
   [10] = {
-    name = "Death Strike on Hit",
+    name = "Death Strike on Attack",
     combatType = US_TYPES.TRIGGER,
-    triggerType = US_TRIGGERS.HIT,
-    VALUES_PER_LEVEL = 1,
+    triggerType = US_TRIGGERS.ATTACK,
+    VALUES_PER_LEVEL = 2.5,
     execute = function(attacker, target, damage)
-      if math.random(100) < 25 then
+      if math.random(100) < 100 then
         attacker:getPosition():sendDistanceEffect(target:getPosition(), CONST_ANI_DEATH)
         doTargetCombatHealth(attacker:getId(), target, COMBAT_DEATHDAMAGE, 1, damage, CONST_ME_MORTAREA, ORIGIN_CONDITION)
       end
     end,
     format = function(value)
-      return "25%% chance to reflect or cast Death Hit dealing 1-" .. value .. " damage on combat"
+      return "20%% to cast Death Strike on Attack dealing 1-" .. value .. " damage"
     end,
     itemType = US_ITEM_TYPES.RING + US_ITEM_TYPES.NECKLACE + US_ITEM_TYPES.WEAPON_WAND
   },
   [11] = {
-    name = "Divine Missile on Hit",
+    name = "Divine Missile on Attack",
     combatType = US_TYPES.TRIGGER,
-    triggerType = US_TRIGGERS.HIT,
-    VALUES_PER_LEVEL = 1,
+    triggerType = US_TRIGGERS.ATTACK,
+    VALUES_PER_LEVEL = 2.5,
     execute = function(attacker, target, damage)
-      if math.random(100) < 25 then
+      if math.random(100) < 100 then
         attacker:getPosition():sendDistanceEffect(target:getPosition(), CONST_ANI_SMALLHOLY)
         doTargetCombatHealth(attacker:getId(), target, COMBAT_HOLYDAMAGE, 1, damage, CONST_ME_HOLYDAMAGE, ORIGIN_CONDITION)
       end
     end,
     format = function(value)
-      return "25%% chance to reflect or cast Divine Hit dealing 1-" .. value .. " damage on combat"
+      return "20%% to cast Divine Missile on Attack dealing 1-" .. value .. " damage"
     end,
     itemType = US_ITEM_TYPES.WEAPON_DISTANCE 
   },
   [12] = {
-    name = "Energy Strike on Hit",
+    name = "Energy Strike on Attack",
     combatType = US_TYPES.TRIGGER,
-    triggerType = US_TRIGGERS.HIT,
-    VALUES_PER_LEVEL = 1,
+    triggerType = US_TRIGGERS.ATTACK,
+    VALUES_PER_LEVEL = 2.5,
     execute = function(attacker, target, damage)
-      if math.random(100) < 25 then
+      if math.random(100) < 100 then
         attacker:getPosition():sendDistanceEffect(target:getPosition(), CONST_ANI_ENERGY)
         doTargetCombatHealth(attacker:getId(), target, COMBAT_ENERGYDAMAGE, 1, damage, CONST_ME_ENERGYAREA, ORIGIN_CONDITION)
       end
     end,
     format = function(value)
-      return "25%% chance to reflect or cast Energy Hit dealing 1-" .. value .. " damage on combat"
+      return "20%% to cast Energy Strike on Attack dealing 1-" .. value .. " damage"
     end,
     itemType = US_ITEM_TYPES.RING + US_ITEM_TYPES.NECKLACE + US_ITEM_TYPES.WEAPON_WAND
   },

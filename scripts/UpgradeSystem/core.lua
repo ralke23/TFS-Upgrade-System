@@ -4,7 +4,7 @@ print(">> Loading upgrade system v" .. UPGRADE_SYSTEM_VERSION)
 US_CONDITIONS = {}
 US_BUFFS = {}
 
-local US_SUBID = {}
+US_SUBID = {}
 
 local TargetCombatEvent = EventCallback
 TargetCombatEvent.onTargetCombat = function(creature, target)
@@ -98,6 +98,12 @@ function us_onEquip(cid, iuid, slot)
             end
         end
     end
+	 addEvent(function(pid) 
+  local player = Player(pid)
+	  if player then
+		us_onLogin(player)
+	  end 
+  end, 10, player:getId())
 end
 
 local MoveItemEvent = EventCallback
@@ -126,12 +132,9 @@ MoveItemEvent.onMoveItem = function(player, item, count, fromPosition, toPositio
         end
     end
 
-    if toPosition.y <= CONST_SLOT_AMMO then
-        if toPosition.y ~= CONST_SLOT_BACKPACK then
-            if fromPosition.y >= 64 or fromPosition.x ~= CONTAINER_POSITION then
-                -- remove old
-                local oldItem = player:getSlotItem(toPosition.y)
-                if oldItem then
+    for slotItem=CONST_SLOT_HEAD, CONST_SLOT_AMMO do
+        local oldItem = player:getSlotItem(slotItem)
+				if oldItem then
                     if oldItem:getType():isUpgradable() then
                         local oldBonuses = oldItem:getBonusAttributes()
                         if oldBonuses then
@@ -152,22 +155,18 @@ MoveItemEvent.onMoveItem = function(player, item, count, fromPosition, toPositio
                                             end
                                         end
                                     end
-                                end
-                            end
-                        end
-                    end
-                end
-                -- apply new
-                if item:getType():isUpgradable() then
-                    local newBonuses = item:getBonusAttributes()
-                    if newBonuses then
-                        addEvent(us_onEquip, 10, player:getId(), item:getUniqueId(), toPosition.y)
-                    end
-                end
-            end
-        end
+								end
+							end
+						end
+					end
+				end
     end
-
+	 addEvent(function(pid) 
+  local player = Player(pid)
+	  if player then
+		us_onLogin(player)
+	  end 
+  end, 10, player:getId())
     return true
 end
 MoveItemEvent:register()
